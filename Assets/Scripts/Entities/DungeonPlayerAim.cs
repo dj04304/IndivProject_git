@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,29 @@ public class DungeonPlayerAim : MonoBehaviour
     void Start()
     {
         _controller.OnLookEvent += OnAim;
+        int userId = GameManager.Instance.userId;
+        SetCharacterRenderer(userId);
+    }
+
+    /// <summary>
+    /// userid에 따라 캐릭터 선택
+    /// </summary>
+    private void SetCharacterRenderer(int userId)
+    {
+        if (userId == 0)
+        {
+            // GameManager에서 userId가 0이면 첫 번째 Sprite의 characterRenderer를 할당
+            characterRenderer = transform.Find("CharacterSprite1").GetComponent<SpriteRenderer>();
+        }
+        else if (userId == 1)
+        {
+            // GameManager에서 userId가 1이면 두 번째 Sprite의 characterRenderer를 할당
+            characterRenderer = transform.Find("CharacterSprite2").GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            Debug.LogWarning("Unsupported userId: " + userId);
+        }
     }
 
     private void OnAim(Vector2 newAimDirection)
