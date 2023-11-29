@@ -68,7 +68,7 @@
 
 __캐릭터 선택__  
 
-![SelectCharacter](./Assets/Images/ReadMEImg/LoadCharacterSelectImg.gif)  
+<img src = https://github.com/dj04304/IndivProject_git/assets/105491519/103e300c-51f5-4298-a779-859e51b42c92 width="100%" height="100%">
 
  * 펭귄 또는 사람을 선택할 수 있음
  * 선택 한 캐릭터 이미지를 출력
@@ -77,7 +77,7 @@ __캐릭터 선택__
 
 __닉네임 설정__  
 
-![InputName](./Assets/Images/ReadMEImg/LoadGameStart.gif)  
+<img src = https://github.com/dj04304/IndivProject_git/assets/105491519/744760c7-f377-40d1-8f41-6d2d53c8dcaf width="100%" height="100%">  
 
  * 캐릭터 선택 후 닉네임 설정후 게임 입장 시 해당 캐릭터와 닉네임으로 진행
 
@@ -90,11 +90,11 @@ __닉네임 설정__
 
 __캐릭터 움직임__
 
-![InputName](./Assets/Images/ReadMEImg/GameMoveCharacter.gif) 
+<img src = https://github.com/dj04304/IndivProject_git/assets/105491519/1755cf84-3e38-4ef4-9d20-151d826763e8 width="100%" height="100%">  
 
 <br/>
 
-![InputName](./Assets/Images/ReadMEImg/GamePenguinMove.gif) 
+<img src = https://github.com/dj04304/IndivProject_git/assets/105491519/2cb2847f-c7fb-4041-8c2b-726e3ab0ea8d width="100%" height="100%">  
 
 * wasd로 움직임
 * 대각선 이동 속도 동일
@@ -108,7 +108,7 @@ __캐릭터 움직임__
 
 __구조물 충돌__  
 
-![NormalGame](./Assets/Images/ReadMEImg/GameCollisionImg.gif)  
+<img src = https://github.com/dj04304/IndivProject_git/assets/105491519/e1e4855b-1fd7-4cbd-896d-8ca6f6a22087 width="100%" height="100%">  
 
 * 외부벽 및 구조물 충돌 구현
 
