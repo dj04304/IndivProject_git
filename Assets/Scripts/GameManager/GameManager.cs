@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     // πﬁæ∆ø√ playerId
     private string _playerId;
     // πﬁæ∆ø√ userId
-    private int _userId = 0;
+    private int _userId;
 
     /// <summary>
     /// ΩÃ±€≈Ê

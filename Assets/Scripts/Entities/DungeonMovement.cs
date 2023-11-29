@@ -1,89 +1,3 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class DungeonMovement : MonoBehaviour
-//{
-//    private DungeonCharacterController _controller;
-
-//    [SerializeField] private RuntimeAnimatorController[] animController;
-//    //[SerializeField] private Animator animator;
-//    [SerializeField] private float speed = 5f;
-
-//    private Vector2 _movementDirection = Vector2.zero;
-
-//    private Animator _animator;
-//    private Rigidbody2D _rigidbody;
-
-//    private enum Trigger
-//    {
-//        MOVE,
-//        IDLE
-//    }
-
-//    private Trigger _trigger;
-
-//    private void Awake()
-//    {
-//        _controller = GetComponent<DungeonCharacterController>();
-//        _rigidbody = GetComponent<Rigidbody2D>();
-//        _animator = GetComponent<Animator>();
-
-//    }
-
-//    private void Start()
-//    {
-//        _controller.OnMoveEvent += Move;
-//        _trigger = Trigger.IDLE;
-//        _animator.SetTrigger(_trigger.ToString());
-//    }
-
-//    private void FixedUpdate()
-//    {
-//        ApplyMovement(_movementDirection);
-//    }
-//    void OnEnable()
-//    {
-
-//        int userId = GameManager.Instance.userId;
-
-//        if (userId >= 0 && userId < animController.Length)
-//        {
-
-//        _animator.runtimeAnimatorController = animController[userId];
-
-//        }
-//        else
-//        {
-//            Debug.Log("잘못된 로직");
-//        }
-//    }
-
-//    private void Move(Vector2 direction)
-//    {
-//        _movementDirection = direction;
-//    }
-
-//    private void ApplyMovement(Vector2 direction)
-//    {
-
-//        _trigger = direction != Vector2.zero ? Trigger.MOVE : Trigger.IDLE;
-
-//        if (_animator != null)
-//        {
-//            _animator.SetTrigger(_trigger.ToString());
-//        }
-//        else
-//        {
-//            Debug.LogWarning("null 들어감.");
-//        }
-
-//        direction = direction * speed;
-//        _rigidbody.velocity = direction;
-//    }
-
-//}
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -104,6 +18,7 @@ public class DungeonMovement : MonoBehaviour
     private Animator _animator2; // 두 번째 Animator
     private Rigidbody2D _rigidbody;
 
+    // MOVE와 IDLE을 enum으로주고 애니메이션에서 setTrigger용도로 사용
     private enum Trigger
     {
         MOVE,
@@ -117,7 +32,7 @@ public class DungeonMovement : MonoBehaviour
         _controller = GetComponent<DungeonCharacterController>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        // 자식 오브젝트에 붙어 있는 Animator들을 가져오기
+        // 자식 오브젝트(CharacterSprite1, 2)에 붙어 있는 Animator들을 가져오기
         _animator1 = transform.Find("CharacterSprite1").GetComponent<Animator>();
         _animator2 = transform.Find("CharacterSprite2").GetComponent<Animator>();
     }
@@ -130,9 +45,12 @@ public class DungeonMovement : MonoBehaviour
         AnimatorTrigger(_trigger);
     }
 
+    /// <summary>
+    /// // _animator1과 _animator2 중 어떤 것을 사용할지 선택
+    /// </summary>
     private void AnimatorTrigger(Trigger _trigger)
     {
-        // _animator1과 _animator2 중 어떤 것을 사용할지 선택
+        
         if (GameManager.Instance.userId == 0)
         {
             _animator1.SetTrigger(_trigger.ToString());
@@ -143,7 +61,7 @@ public class DungeonMovement : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Unsupported userId: " + GameManager.Instance.userId);
+            Debug.Log("userId: " + GameManager.Instance.userId);
         }
     }
 
@@ -152,7 +70,7 @@ public class DungeonMovement : MonoBehaviour
         ApplyMovement(_movementDirection);
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         int userId = GameManager.Instance.userId;
         SetActiveCharacterSprite(userId);
@@ -178,13 +96,19 @@ public class DungeonMovement : MonoBehaviour
         {
             _animator2.SetTrigger(_trigger.ToString());
         }
+
         direction = direction * speed;
         _rigidbody.velocity = direction;
     }
 
+    /// <summary>
+    /// ActiveCharacterSprite
+    /// </summary>
     private void SetActiveCharacterSprite(int userId)
     {
-        if(userId == 0)
+
+        //할당받은 CharterSprite중 어떤 Sprite를 활성화시킬지 선택
+        if (userId == 0)
         {
             chSprite1.SetActive(userId == 0);
         }
@@ -194,7 +118,7 @@ public class DungeonMovement : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Unsupported userId: " + userId);
+            Debug.Log("userId: " + userId);
         }
        
     }
@@ -217,12 +141,12 @@ public class DungeonMovement : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Unsupported userId: " + userId);
+                Debug.Log("userId: " + userId);
             }
         }
         else
         {
-            Debug.LogWarning("Invalid userId or Animator array index.");
+            Debug.Log("userId: " + userId);
         }
     }
 
