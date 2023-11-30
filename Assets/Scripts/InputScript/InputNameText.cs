@@ -52,5 +52,4 @@ public class InputNameText : MonoBehaviour
         warningPanel.SetActive(false);
     }
 
-
 }

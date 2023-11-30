@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : DungeonCharacterController
 {
+    public GameObject uiPanel;
     private Camera _camera;
+   
 
     private void Awake()
     {
@@ -14,8 +16,17 @@ public class PlayerInputController : DungeonCharacterController
 
     public void OnMove(InputValue value)
     {
-        Vector2 moveInput = value.Get<Vector2>().normalized;
-        CallMoveEvent(moveInput);
+        if(uiPanel.activeSelf == false)
+        {
+            Vector2 moveInput = value.Get<Vector2>().normalized;
+            CallMoveEvent(moveInput);
+        }
+        else if(uiPanel.activeSelf == true)
+        {
+            Vector2 moveInput = Vector2.zero;
+            CallMoveEvent(moveInput);
+        }
+        
     }
     public void OnLook(InputValue value)
     {
